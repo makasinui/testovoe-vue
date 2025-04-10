@@ -6,6 +6,7 @@
             :to="currentLang.name"
             :from="currency.name"
             :price-list="currenciesPrice"
+            @refresh="fetchCurrencies"
         />
     </div>
 </template>
