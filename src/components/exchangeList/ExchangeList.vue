@@ -5,7 +5,7 @@
             v-for="currency in currencyToShow"
             :to="currentLang.name"
             :from="currency.name"
-            :price-list="currenciesPrice"
+            :price-list="priceList"
             @refresh="fetchCurrencies"
         />
     </div>
@@ -20,21 +20,17 @@ import { computed, onMounted, ref } from 'vue';
 
 const langStore = useLangStore();
 
-const { currentLang } = storeToRefs(langStore);
+const { currentLang, priceList } = storeToRefs(langStore);
 const { langs } = langStore;
 
 const currencyToShow = computed(() => langs.filter((lang) => lang.id !== currentLang.value.id));
-const currenciesPrice = ref();
 
 const fetchCurrencies = async () => {
     try {
-        currenciesPrice.value = await httpGetCurrency();    
+        priceList.value = await httpGetCurrency();    
     } catch(err) {
         console.error(err);
     }
 }
 
-onMounted(async () => {
-    await fetchCurrencies();
-});
 </script>

@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import type { IDropdownItem } from "../types";
+import type { IDropdownItem, TCurrency } from "../types";
 
 export const useLangStore = defineStore('langStore', () => {
     const langs: IDropdownItem[] = [
@@ -19,6 +19,7 @@ export const useLangStore = defineStore('langStore', () => {
     ];
 
     const currentLang = ref(langs[2]);
+    const priceList = ref<TCurrency[]>();
 
     const changeLang = (langItem: IDropdownItem) => {
         if(!langItem) {
@@ -31,6 +32,7 @@ export const useLangStore = defineStore('langStore', () => {
     return {
         langs,
         currentLang,
+        priceList,
         changeLang
     }
 });
