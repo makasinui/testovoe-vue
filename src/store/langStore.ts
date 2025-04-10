@@ -20,13 +20,12 @@ export const useLangStore = defineStore('langStore', () => {
 
     const currentLang = ref(langs[2]);
 
-    const changeLang = (id: number) => {
-        const langToChange = langs.find(item => item.id === id);
-        if(!langToChange) {
+    const changeLang = (langItem: IDropdownItem) => {
+        if(!langItem) {
             return
         };
 
-        currentLang.value = langToChange;
+        currentLang.value = langItem;
     }
 
     return {
