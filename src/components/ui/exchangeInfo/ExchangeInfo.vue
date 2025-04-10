@@ -31,13 +31,28 @@
 </template>
 
 <script lang="ts" setup>
+import { TCurrency } from '@/types';
 import { getFlag } from '@/utils';
+import { computed, toRefs } from 'vue';
 
 interface IProps {
     from: string;
     to: string;
-    price: string
+    priceList: TCurrency[]
 }
 
-defineProps<IProps>();
+const props = defineProps<IProps>();
+const { priceList } = toRefs(props);
+
+const price = computed(() => {
+  const { from, to } = props;
+
+  if(!priceList.value) {
+      return
+  }
+  const currencyCode = `${from.toLowerCase()}-${to.toLowerCase()}`;
+
+  return priceList.value[currencyCode];
+})
+
 </script>
