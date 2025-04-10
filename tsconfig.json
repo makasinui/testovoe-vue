@@ -1,19 +1,15 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ],
   "compilerOptions": {
-    "types": [
-      "node"
-    ],
-    "target": "ES2023",
     "skipLibCheck": true,
+    "types": ["node"],
+    "module": "Preserve",
     "moduleResolution": "bundler",
     "paths": {
       "@/*": ["./src/*"]
-    },
+    }
   },
-  "include": ["./**/*.ts", "./**/*.d.ts", "./**/*.tsx", "./**/*.vue"],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
 }
