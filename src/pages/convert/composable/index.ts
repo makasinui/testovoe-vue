@@ -1,4 +1,4 @@
-import { computed, ref, watch, watchEffect } from "vue"
+import { computed, ref, watch } from "vue"
 import { useLangStore } from "../../../store/langStore";
 import { storeToRefs } from "pinia";
 
@@ -23,27 +23,27 @@ export const useConvert = () => {
         }
         const currencyCode = `${firstLang.value.name.toLowerCase()}-${secondLang.value.name.toLowerCase()}`;
 
-        return priceList.value[currencyCode];
+        return priceList.value[currencyCode as keyof typeof priceList.value] as number;
     });
 
     const langOptions = computed(() => langs.filter(item => item.id !== firstLang.value.id && item.id !== secondLang.value.id))
 
     watch(() => firstValue.value, (newValue) => {
-        if(activeSide === 'second') return;
+        if(activeSide === 'second' || !currencyConvertingPrice.value) return;
         activeSide = 'first';
         secondValue.value = Number((currencyConvertingPrice.value * newValue).toFixed(2));
         activeSide = null;
     });
 
     watch(() => secondValue.value, (newValue) => {
-        if(activeSide === 'first') return;
+        if(activeSide === 'first' || !currencyConvertingPrice.value) return;
         activeSide = 'second';
         firstValue.value = Number((newValue / currencyConvertingPrice.value).toFixed(2));
         activeSide = null;
     });
 
     watch(() => [firstLang.value, secondLang.value], () => {
-        if(firstValue.value) {
+        if(firstValue.value && currencyConvertingPrice.value) {
             secondValue.value = currencyConvertingPrice.value * firstValue.value;
         }
     })

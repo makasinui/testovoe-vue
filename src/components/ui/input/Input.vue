@@ -2,7 +2,7 @@
     <label class="w-full flex flex-col">
         <span>{{ label }}</span>
         <input
-            type="text"
+            type="number"
             :placeholder="placeholder"
             v-model="modelValue"
             class="py-2 px-4 border rounded-lg"
