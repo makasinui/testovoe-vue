@@ -8,7 +8,7 @@
             <span>{{ currentItem }}</span>
         </div>
         <div
-            class="bg-white border border-black absolute max-w-fit top-12 left-1 items-center gap-4 px-4 py-2 flex flex-col w-full duration-200 transition-all"
+            class="bg-white z-10 border border-black absolute max-w-fit top-12 left-1 items-center gap-4 px-4 py-2 flex flex-col w-full duration-200 transition-all"
             v-if="isOpen"
         >
             <span

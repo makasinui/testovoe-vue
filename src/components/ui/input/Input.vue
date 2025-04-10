@@ -18,5 +18,5 @@ interface IProps {
 
 defineProps<IProps>();
 
-const modelValue = defineModel<string>();
+const modelValue = defineModel<number>();
 </script>
